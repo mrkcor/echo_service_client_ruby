@@ -1,4 +1,4 @@
-EchoService Client in Ruby
+EchoService Client in Ruby [![Build Status](https://secure.travis-ci.org/mkremer/echo_service_client_ruby.png)](http://travis-ci.org/mkremer/echo_service_client_ruby)
 ==============
 SOAP client for the [EchoService](https://github.com/mkremer/echo_service)
 
