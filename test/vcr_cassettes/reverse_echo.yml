@@ -1,0 +1,92 @@
+---
+- !ruby/struct:VCR::HTTPInteraction
+  request: !ruby/struct:VCR::Request
+    method: :get
+    uri: http://localhost:9292/echo_service.wsdl
+    body: !!null 
+    headers: !!null 
+  response: !ruby/struct:VCR::Response
+    status: !ruby/struct:VCR::ResponseStatus
+      code: 200
+      message: OK
+    headers:
+      x-frame-options:
+      - sameorigin
+      x-xss-protection:
+      - 1; mode=block
+      content-type:
+      - text/xml;charset=utf-8
+      content-length:
+      - '2569'
+      server:
+      - WEBrick/1.3.1 (Ruby/1.9.2/2011-07-09)
+      date:
+      - Tue, 01 Nov 2011 21:27:52 GMT
+    body: ! "<?xml version=\"1.0\"?>\n<wsdl:definitions xmlns:wsdl=\"http://schemas.xmlsoap.org/wsdl/\"
+      xmlns:soap=\"http://schemas.xmlsoap.org/wsdl/soap/\" xmlns:xs=\"http://www.w3.org/2001/XMLSchema\"
+      xmlns:tns=\"http://www.without-brains.net/echo_service\" xmlns:echo=\"http://www.without-brains.net/echo\"
+      targetNamespace=\"http://www.without-brains.net/echo_service\">\n  <wsdl:types>\n
+      \   <xs:schema xmlns=\"http://www.without-brains.net/echo\" xmlns:xs=\"http://www.w3.org/2001/XMLSchema\"
+      targetNamespace=\"http://www.without-brains.net/echo\" attributeFormDefault=\"qualified\"
+      elementFormDefault=\"qualified\">\n      <xs:include schemaLocation=\"./echo_service.xsd\"/>\n
+      \   </xs:schema>\n  </wsdl:types>\n  <wsdl:message name=\"EchoRequestMessage\">\n
+      \   <wsdl:part name=\"parameter\" element=\"echo:EchoRequest\"/>\n  </wsdl:message>\n
+      \ <wsdl:message name=\"EchoResponseMessage\">\n    <wsdl:part name=\"parameter\"
+      element=\"echo:EchoResponse\"/>\n  </wsdl:message>\n  <wsdl:message name=\"ReverseEchoRequestMessage\">\n
+      \   <wsdl:part name=\"parameter\" element=\"echo:ReverseEchoRequest\"/>\n  </wsdl:message>\n
+      \ <wsdl:message name=\"ReverseEchoResponseMessage\">\n    <wsdl:part name=\"parameter\"
+      element=\"echo:ReverseEchoResponse\"/>\n  </wsdl:message>\n  <wsdl:portType
+      name=\"EchoPortType\">\n    <wsdl:operation name=\"Echo\">\n      <wsdl:input
+      message=\"tns:EchoRequestMessage\"/>\n      <wsdl:output message=\"tns:EchoResponseMessage\"/>\n
+      \   </wsdl:operation>\n    <wsdl:operation name=\"ReverseEcho\">\n      <wsdl:input
+      message=\"tns:ReverseEchoRequestMessage\"/>\n      <wsdl:output message=\"tns:ReverseEchoResponseMessage\"/>\n
+      \   </wsdl:operation>\n  </wsdl:portType>\n  <wsdl:binding name=\"EchoBinding\"
+      type=\"tns:EchoPortType\">\n    <soap:binding style=\"document\" transport=\"http://schemas.xmlsoap.org/soap/http\"/>\n
+      \   <wsdl:operation name=\"Echo\">\n      <soap:operation soapAction=\"http://www.without-brains.net/echo_service#Echo\"/>\n
+      \     <wsdl:input>\n        <soap:body use=\"literal\"/>\n      </wsdl:input>\n
+      \     <wsdl:output>\n        <soap:body use=\"literal\"/>\n      </wsdl:output>\n
+      \   </wsdl:operation>\n    <wsdl:operation name=\"ReverseEcho\">\n      <soap:operation
+      soapAction=\"http://www.without-brains.net/echo_service#ReverseEcho\"/>\n      <wsdl:input>\n
+      \       <soap:body use=\"literal\"/>\n      </wsdl:input>\n      <wsdl:output>\n
+      \       <soap:body use=\"literal\"/>\n      </wsdl:output>\n    </wsdl:operation>\n
+      \ </wsdl:binding>\n  <wsdl:service name=\"EchoService\">\n    <wsdl:port name=\"EchoPort\"
+      binding=\"tns:EchoBinding\">\n      <soap:address location=\"http://localhost:9292/echo_service\"/>\n
+      \   </wsdl:port>\n  </wsdl:service>\n</wsdl:definitions>\n"
+    http_version: '1.1'
+- !ruby/struct:VCR::HTTPInteraction
+  request: !ruby/struct:VCR::Request
+    method: :post
+    uri: http://localhost:9292/echo_service
+    body: <?xml version="1.0" encoding="UTF-8"?><env:Envelope xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:echo="http://www.without-brains.net/echo"
+      xmlns:env="http://schemas.xmlsoap.org/soap/envelope/"><env:Body><echo:ReverseEchoRequest><echo:Message>Hello
+      from Ruby</echo:Message></echo:ReverseEchoRequest></env:Body></env:Envelope>
+    headers:
+      soapaction:
+      - ! '"ReverseEchoRequest"'
+      content-type:
+      - text/xml;charset=UTF-8
+      content-length:
+      - '384'
+  response: !ruby/struct:VCR::Response
+    status: !ruby/struct:VCR::ResponseStatus
+      code: 200
+      message: OK
+    headers:
+      x-frame-options:
+      - sameorigin
+      x-xss-protection:
+      - 1; mode=block
+      content-type:
+      - text/xml;charset=utf-8
+      content-length:
+      - '279'
+      server:
+      - WEBrick/1.3.1 (Ruby/1.9.2/2011-07-09)
+      date:
+      - Tue, 01 Nov 2011 21:27:52 GMT
+    body: ! "<SOAP:Envelope xmlns:SOAP=\"http://schemas.xmlsoap.org/soap/envelope/\"
+      xmlns:echo=\"http://www.without-brains.net/echo\">\n  <SOAP:Body>\n    <echo:ReverseEchoResponse>\n
+      \     <echo:Message>ybuR morf olleH</echo:Message>\n    </echo:ReverseEchoResponse>\n
+      \ </SOAP:Body>\n</SOAP:Envelope>\n"
+    http_version: '1.1'

@@ -1,6 +1,8 @@
 source "http://rubygems.org"
 
 gem "savon"
+gem "vcr"
+gem "fakeweb"
 
 group :development, :test do
   gem "guard"
