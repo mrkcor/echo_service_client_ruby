@@ -2,7 +2,7 @@ EchoService Client in Ruby [![Build Status](https://secure.travis-ci.org/mkremer
 ==============
 SOAP client for the [EchoService](https://github.com/mkremer/echo_service)
 
-Uses [Savon](http://savonrb.com) SOAP client library
+Uses the [Savon](http://savonrb.com) SOAP client library
 
 Usage
 -----
