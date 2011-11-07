@@ -52,7 +52,12 @@ class Echo
     @output.puts "EchoService responded to #{request_name}: #{data[:message]}"
     data[:message]
   rescue Savon::Error => exception
-    # In case of a SOAP fault or HTTPI error output the error message
+    # In case of a SOAP fault or HTTP error output the error message
+    #
+    # Savon::Error is a generic exception that catches both SOAP faults and
+    # HTTP errors, if you want you can catch more specific exceptions in your 
+    # code to handle specific faults (Savon::SOAP::Fault for SOAP faults and
+    # Savon::HTTP::Error for HTTP errors)
     @output.puts "An error occurred while calling #{request_name} on the EchoService: #{exception.message}"
   end
 end
